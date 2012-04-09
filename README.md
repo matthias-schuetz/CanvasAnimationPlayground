@@ -3,7 +3,7 @@ Canvas Animation Playground
 
 ## A browser playground for creating HTML5 canvas animations in real-time
 
-The Canvas Animation Playground is an experimental tool for creating HTML5 canvas animations. Just type in JavaScript code and it will be interpreted for the &lt;canvas&gt; box on the right side. The function "CanvasAnimationLoop()" gets called on every browser frame via "requestAnimationFrame". Animations can be exported as stand-alone HTML files. The editor can be customized in its appearance so there are themes and some other editor options. The Canvas Animation Playground is based on HTMLiveCode and CodeMirror and HTML5's localStorage.
+The Canvas Animation Playground is an experimental tool for creating HTML5 canvas animations. Just type in JavaScript code and it will be interpreted for the &lt;canvas&gt; box on the right side. The function "CanvasAnimationLoop()" gets called on every browser frame via "requestAnimationFrame". Animations can be exported as stand-alone HTML files. The editor can be customized in its appearance so there are themes and some other editor options. The Canvas Animation Playground is based on HTMLiveCode, CodeMirror and HTML5's localStorage.
 
 <img src="http://matthias-schuetz.github.com/canvas-animation-playground/canvas-animation-playground.png" />
 
@@ -12,7 +12,7 @@ The Canvas Animation Playground is an experimental tool for creating HTML5 canva
 
 ## Usage
 
-The usage is the same as for HTMLiveCode and the Canvas Animation Playground doesn't have an own name as JavaScript object. So after loading all necessary files of the folders "js" and "css" in your main file, HTMLiveCode is available in the global namespace and must be instantiated as an object. You don't need any HTML markup as the editor will be attached to the <body> element. You don't need to specify any options since HTMLiveCode can be started with default settings. The editor should be instantiated when the DOM is ready. For example, use the "DOMContentLoaded" event to make sure that everything has been loaded.
+The usage is the same as for HTMLiveCode and the Canvas Animation Playground doesn't have an own name as JavaScript object. So after loading all necessary files of the folders "js" and "css" in your main file, HTMLiveCode is available in the global namespace and must be instantiated as an object. You don't need any HTML markup as the editor will be attached to the &lt;body&gt; element. You don't need to specify any options since HTMLiveCode can be started with default settings. The editor should be instantiated when the DOM is ready. For example, use the "DOMContentLoaded" event to make sure that everything has been loaded.
 
 ### Defaults
 
@@ -20,7 +20,7 @@ The usage is the same as for HTMLiveCode and the Canvas Animation Playground doe
 /*
  * HTMLiveCode instantiation (all arguments are optional)
  * 
- * @param Object settings object which contains all options
+ * @param Object settings Object which contains all options
  *        settings:
  *        @param Boolean gutter Toggles gutter and line numbers
  *        @param Boolean wordWrap Toggles word wrapping
@@ -109,14 +109,14 @@ The Canvas Animation Playground comes with some default shortcuts:
 * **ALT-M:** Toggle menu bar
 * **ALT-T:** Toggle theme
 * **ALT-I:** Increase font size
-* **ALT-O:** Dcrease font size
+* **ALT-O:** Decrease font size
 * **ALT-0:** Reset font size
 * **ALT-G:** Toggle gutter
 * **ALT-W:** Toggle word wrap
 * **ALT-L:** Toggle log window
 
 ## Notes
-* **Compatibility:** The Canvas Animation Playground and HTMLiveCode were developed with HTML5 in mind. So it works in modern browsers and Internet Explorer from version 9 on.
+* **Compatibility:** The Canvas Animation Playground and HTMLiveCode were developed with HTML5 in mind. So they work in modern browsers and Internet Explorer from version 9 on.
 
 ## License
 
