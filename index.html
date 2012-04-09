@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>HTML5 Canvas Animation Playground</title>
+		<link href="css/HTMLiveCode.css" rel="stylesheet" />
+		<link href="js/codemirror/codemirror.css" rel="stylesheet" />
+		<link href="js/codemirror/theme/bright.css" rel="stylesheet" />
+		<link href="js/codemirror/theme/dark.css" rel="stylesheet" />
+		<link href="favicon.ico" rel="shortcut icon" />
+		<script src="js/codemirror/codemirror.js"></script>
+		<script src="js/codemirror/javascript.js"></script>
+		<script src="js/codemirror/foldcode.js"></script>
+		<script src="js/HTMLiveCode.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/template2.js"></script>
+		<script src="js/RequestAnimationFrame.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			window.addEventListener("DOMContentLoaded", function() {
+				window.liveEditor = new HTMLiveCode();
+				window.liveEditor.init();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="menu-bar">
+			<div id="menu-column-1">
+				<div class="menu-button-first dropdown-button" id="btn-dropdown-settings">
+					<span>Settings</span>
+					<div class="dropdown" id="dropdown-settings">
+						<div class="menu-label">Theme</div>
+						<div class="menu-button-active" id="btn-style-bright">Bright</div>
+						<div class="menu-button" id="btn-style-dark">Dark</div>
+						<div class="dropdown-separator"></div>
+						<div class="menu-label">Font size</div>
+						<div class="menu-button" id="btn-fontsize-increase">A+</div>
+						<div class="menu-button" id="btn-fontsize-decrease">A-</div>
+						<div class="menu-button" id="btn-fontsize-reset">A<sup>&oslash;</sup></div>
+						<div class="dropdown-separator"></div>
+						<div class="menu-label">Options</div>
+						<div class="menu-button-active" id="btn-options-gutter">Gutter</div>
+						<div class="menu-button-active" id="btn-options-wordwrap">Word wrap</div>
+						<div class="menu-button" id="btn-options-logwindow">Log window</div>
+						<div class="dropdown-separator"></div>
+						<div class="menu-label">Shortcuts</div>
+						<p class="labeltext">
+							<span class="shortcut">ALT + M</span><span>Toggle menu bar</span>
+							<span class="shortcut">ALT + T</span><span>Toggle theme</span>
+							<span class="shortcut">ALT + I</span><span>Increase font size</span>
+							<span class="shortcut">ALT + O</span><span>Decrease font size</span>
+							<span class="shortcut">ALT + 0</span><span>Reset font size</span>
+							<span class="shortcut">ALT + G</span><span>Toggle gutter</span>
+							<span class="shortcut">ALT + W</span><span class="last">Toggle word wrap</span>
+							<span class="shortcut last">ALT + L</span><span class="last">Toggle log window</span>
+						</p>
+						<div class="dropdown-separator"></div>
+						<div class="menu-label">Load</div>
+						<div class="menu-button" id="btn-examples-sample1">Example 1</div>
+						<div class="menu-button" id="btn-examples-sample2">Example 2</div>
+					</div>
+				</div>
+				<div class="menu-separator"></div>
+				<div class="menu-label">Reset</div>
+				<div class="menu-button" id="btn-reset-code">Code</div>
+				<div class="menu-button" id="btn-reset-settings">Settings</div>
+				<div class="menu-separator"></div>
+				<div class="menu-button-single" id="btn-export">Export animation</div>
+				<div class="menu-separator"></div>
+				<div class="menu-button-single dropdown-button" id="btn-dropdown-info">
+					<span>?</span>
+					<div class="dropdown" id="dropdown-info">
+						<p>The <strong>Canvas Animation Playground</strong> is an experimental tool for creating HTML5 canvas animations. Just type in JavaScript code and it will be interpreted for the &lt;canvas&gt; box on the right side. The function "CanvasAnimationLoop()" gets called on every browser frame via "requestAnimationFrame". Animations can be exported as stand-alone HTML files.</p>
+						<p>There are some global objects and functions you may want to use:</p>
+						<p>
+							CVS = &lt;canvas&gt; element itself<br />
+							CTX = canvas.getContext("2d")<br />
+							LOG(message) = send message to log window<br />
+							CLEARLOG() = clears log window<br />
+						</p>
+						<p>Click on the gutter to fold an object or a function in and out.</p>
+						<p>The tool makes use of HTML5's localStorage and has been optimized for modern browsers. Internet Explorer is supported from version 9 on.</p>
+						<p class="last-paragraph">The project was developed by <a href="http://matthiasschuetz.com">Matthias Schuetz</a> and is available on <a href="https://github.com/matthias-schuetz/CanvasAnimationPlayground">GitHub</a>. It's based on <a href="https://github.com/matthias-schuetz/HTMLiveCode">HTMLiveCode</a>, a real-time code editor.</p>
+					</div>
+				</div>
+			</div>
+			<div id="logo"></div>
+		</div>
+		<div id="imagepath-tooltip" class="tooltip">
+			<div id="imagepath-tooltip-arrow" class="tooltip-arrow"></div>
+			Use this path to point to local image files (works for 'src' attribute of images and CSS 'background-image' urls)
+		</div>
+		<div id="intro-tooltip" class="tooltip">
+			<div id="intro-tooltip-arrow" class="tooltip-arrow"></div>
+			Move your cursor over the menu button to show the menu bar.
+		</div>
+	</body>
+</html>
