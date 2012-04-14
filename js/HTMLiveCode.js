@@ -128,7 +128,7 @@ var HTMLiveCode = function() {
 	var _settingsController = {
 		updateStorageSetting: function(settingKey, settingValue) {
 			_editorStorageSettings[settingKey] = settingValue;
-			window.localStorage.setItem("htmlivecodeCanvasSettings", JSON.stringify(_editorStorageSettings));
+			localStorage.setItem("htmlivecodeCanvasSettings", JSON.stringify(_editorStorageSettings));
 		},
 		checkStorageSetting: function(settingValue) {
 			return (settings[settingValue] !== null && typeof settings[settingValue] !== "undefined") ? settings[settingValue] : (_editorStorageSettings[settingValue] !== null && typeof _editorStorageSettings[settingValue] !== "undefined") ? _editorStorageSettings[settingValue] : _editorDefaultSettings[settingValue];
@@ -288,7 +288,7 @@ var HTMLiveCode = function() {
 
 			_menuBtnResetCode.addEventListener("click", function(){
 				if (confirm("Reset code to default template? All changes will be lost.")) {
-					window.localStorage.removeItem("htmlivecodeCanvasText");
+					localStorage.removeItem("htmlivecodeCanvasText");
 					_codeMirrorInstance.setValue(HTMLiveCodeTemplate);
 					_foldFunc(_codeMirrorInstance, 20);
 					_foldFunc(_codeMirrorInstance, 50);
@@ -298,7 +298,7 @@ var HTMLiveCode = function() {
 
 			_menuBtnResetSettings.addEventListener("click", function(){
 				if (confirm("Reset editor settings to default?")) {
-					window.localStorage.removeItem("htmlivecodeCanvasSettings");
+					localStorage.removeItem("htmlivecodeCanvasSettings");
 					_editorStorageSettings = _cloneObject(_editorDefaultSettings);
 					_menuController.setButtonStates();
 					_settingsController.applySettings();
@@ -453,16 +453,34 @@ var HTMLiveCode = function() {
 			}
 		}
 	}
+	
+	try {
+		var localStorage = window.localStorage;
+	} catch(e) {
+		alert("Cookies must be enabled in order to use HTMLiveCode.\nThe editor will work but you will lose all data on reload.")
+
+		var localStorage = {};
+		localStorage.arrStore = [];
+
+		localStorage.getItem = function(key) {
+			return (localStorage.arrStore[key]) ? localStorage.arrStore[key] : null;
+		}
+
+		localStorage.setItem = function(key, object) {
+			localStorage.arrStore[key] = object;
+		}
+
+		localStorage.removeItem = function(key) {
+			for (var _key in localStorage.arrStore) {
+				if (localStorage.arrStore[_key] == key) {
+					localStorage.arrStore.splice(_key, 1);
+				}
+			}
+		}
+	}
 
 	return {
 		init: function() {
-			try {
-				window.localStorage;
-			} catch(e) {
-				alert("Cookies must be enabled in order to use HTMLiveCode.")
-				return false;
-			}
-
 			CodeMirror.keyMap.HTMLiveCode = {
 				"Alt-0": function() { _menuController.changeEditorFontsize(0); },
 				"Alt-I": function() { _menuController.changeEditorFontsize(1); },
@@ -503,19 +521,19 @@ var HTMLiveCode = function() {
 						_codeView = _codeMirrorInstance.getWrapperElement();
 						_codeScrollView = document.querySelector(".CodeMirror-scroll");
 						
-						if (window.localStorage.getItem("htmlivecodeCanvasText") !== null) {
-							_codeMirrorInstance.setValue(window.localStorage.getItem("htmlivecodeCanvasText"));
+						if (localStorage.getItem("htmlivecodeCanvasText") !== null) {
+							_codeMirrorInstance.setValue(localStorage.getItem("htmlivecodeCanvasText"));
 						} else {
 							_codeMirrorInstance.setValue(HTMLiveCodeTemplate);
 							_foldFunc(_codeMirrorInstance, 20);
 							_foldFunc(_codeMirrorInstance, 50);
 						}
 
-						if (window.localStorage.getItem("htmlivecodeCanvasSettings") !== null) {
-							_editorStorageSettings = JSON.parse(window.localStorage.getItem("htmlivecodeCanvasSettings"));
+						if (localStorage.getItem("htmlivecodeCanvasSettings") !== null) {
+							_editorStorageSettings = JSON.parse(localStorage.getItem("htmlivecodeCanvasSettings"));
 							_settingsController.applySettings();
 						} else {
-							window.localStorage.setItem("htmlivecodeCanvasSettings", JSON.stringify(_editorDefaultSettings));
+							localStorage.setItem("htmlivecodeCanvasSettings", JSON.stringify(_editorDefaultSettings));
 							_editorStorageSettings = _cloneObject(_editorDefaultSettings);
 						}
 
@@ -530,7 +548,7 @@ var HTMLiveCode = function() {
 				},
 				onChange: function() {
 					_updateViews();
-					window.localStorage.setItem("htmlivecodeCanvasText", _codeMirrorInstance.getValue());
+					localStorage.setItem("htmlivecodeCanvasText", _codeMirrorInstance.getValue());
 				},
 				onGutterClick: _foldFunc
 			});
@@ -549,7 +567,7 @@ var HTMLiveCode = function() {
 			_fontsizeStylesheet.appendChild(document.createTextNode(".CodeMirror{font-size:"+ _editorDefaultSettings.fontSize +"em;}"));
 			document.body.appendChild(_fontsizeStylesheet);
 
-			if (window.localStorage.getItem("htmlivecodeCanvasText") === null) {
+			if (localStorage.getItem("htmlivecodeCanvasText") === null) {
 				_introTooltip.style.left = ((_browserWidth / 2) - 244) + "px";
 				_introTooltip.style.display = "inline";
 				setTimeout(function(){
