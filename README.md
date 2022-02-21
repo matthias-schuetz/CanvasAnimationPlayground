@@ -5,11 +5,6 @@ Canvas Animation Playground
 
 The Canvas Animation Playground is an experimental tool for creating HTML5 canvas animations. Just type in JavaScript code and it will be interpreted for the &lt;canvas&gt; box on the right side. The function "CanvasAnimationLoop()" gets called on every browser frame via "requestAnimationFrame". Animations can be exported as stand-alone HTML files. The editor can be customized in its appearance so there are themes and some other editor options. The Canvas Animation Playground is based on HTMLiveCode, CodeMirror and HTML5's localStorage.
 
-<img src="http://matthias-schuetz.github.com/canvas-animation-playground/canvas-animation-playground.png" />
-
-## Demo
-<a href="http://htmlivecode.com/canvas-animation-playground">Click here for a live demonstration.</a>
-
 ## Usage
 
 The usage is the same as for HTMLiveCode and the Canvas Animation Playground doesn't have an own name as JavaScript object. So after loading all necessary files of the folders "js" and "css" in your main file, HTMLiveCode is available in the global namespace and must be instantiated as an object. You don't need any HTML markup as the editor will be attached to the &lt;body&gt; element. You don't need to specify any options since HTMLiveCode can be started with default settings. The editor should be instantiated when the DOM is ready. For example, use the "DOMContentLoaded" event to make sure that everything has been loaded.
